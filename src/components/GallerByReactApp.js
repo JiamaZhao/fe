@@ -15,7 +15,7 @@ var GallerByReactApp = React.createClass({
       <div className="main">
         <ReactTransitionGroup transitionName="fade">
           <img src={imageURL} />
-          <span>hello world</span>
+          <span>hello world11</span>
         </ReactTransitionGroup>
       </div>
     );

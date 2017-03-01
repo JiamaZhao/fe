@@ -23,7 +23,7 @@ module.exports = {
   ],
 
   stats: {
-    colors: true,
+    colors: true,//控制台打印的东西是有颜色分别的
     reasons: true
   },
 
@@ -41,10 +41,10 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'eslint-loader'
     }],
-    loaders: [{
+    loaders: [{//为什么我们能直接在css里面能够require图片文件，js文件呢？就是loader在起作用，相当于grunt这种build工具中的task
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loader: 'react-hot!babel-loader'
+      loader: 'react-hot!babel-loader'//react-hot把react实时编译的loader,babel-loader是把es6转化成javascript
     }, {
       test: /\.sass/,
       loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded&indentedSyntax'
