@@ -1,0 +1,2 @@
+问题：Module build failed: Error: Cannot find module 'file-loader'
+解决方法：安装一下 file-loader 即可，npm install file-loader --save -dev
