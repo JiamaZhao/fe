@@ -1,26 +1,35 @@
 'use strict';
 
 var React = require('react/addons');
-var ReactTransitionGroup = React.addons.TransitionGroup;
 
 // CSS
 require('normalize.css');
-require('../styles/main.css');
+require('../styles/main.scss');
 
-var imageURL = require('../images/yeoman.png');
+var imageDatas = require('../data/imageDatas.json');
+
+//一个自执行函数来把json信息转化为路径
+imageDatas = (function(imageArray) {
+    for (var i = 0; i < imageArray.length; i++) {
+        var singleImageData = imageArray[i];
+
+        singleImageData.image = require('../images/' + singleImageData.fileName);
+
+        imageArray[i] = singleImageData;
+    }
+    return imageArray;
+})(imageDatas);
+
 
 var GallerByReactApp = React.createClass({
-  render: function() {
-    return (
-      <div className="main">
-        <ReactTransitionGroup transitionName="fade">
-          <img src={imageURL} />
-          <span>hello world11</span>
-        </ReactTransitionGroup>
-      </div>
-    );
-  }
+    render: function() {
+        return ( < section className = "stage" >
+            < section className = "img-sec" >
+            img - sec < /section> aa22< nav className = "controller-nav" >
+            controller - nav < /nav> < /section >
+        );
+    }
 });
-React.render(<GallerByReactApp />, document.getElementById('content')); // jshint ignore:line
+React.render( < GallerByReactApp />, document.getElementById('content')); // jshint ignore:line
 
 module.exports = GallerByReactApp;

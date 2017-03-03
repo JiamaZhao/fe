@@ -10,10 +10,12 @@
   "mainInput": "GallerByReactApp",
   "mainOutput": "main",
   "dependencies": {
-    "react": "0.13.x",
-    "normalize.css": "~3.0.3"
+    "json-loader": "^0.5.4",
+    "normalize.css": "~3.0.3",
+    "react": "0.13.x"
   },
   "devDependencies": {
+    "autoprefixer-loader": "^2.0.0",
     "babel": "^5.0.0",
     "babel-loader": "^5.0.0",
     "css-loader": "~0.9.0",
