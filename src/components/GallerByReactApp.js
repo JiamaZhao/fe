@@ -13,23 +13,42 @@ imageDatas = (function(imageArray) {
     for (var i = 0; i < imageArray.length; i++) {
         var singleImageData = imageArray[i];
 
-        singleImageData.image = require('../images/' + singleImageData.fileName);
+        singleImageData.imageURL = require('../images/' + singleImageData.fileName);
 
         imageArray[i] = singleImageData;
     }
     return imageArray;
 })(imageDatas);
 
-
-var GallerByReactApp = React.createClass({
+var ImgFigure = React.createClass({
     render: function() {
-        return ( < section className = "stage" >
-            < section className = "img-sec" >
-            img - sec < /section> aa22< nav className = "controller-nav" >
-            controller - nav < /nav> < /section >
+        return ( 
+            < figure className = "image-figure" >
+              < img src = {this.props.data.imageURL} alt ={this.props.data.title}/>
+              < figcaption >
+                  <h2 className = "image-title">title</h2>
+              </figcaption>
+            < /figure>
         );
     }
 });
-React.render( < GallerByReactApp />, document.getElementById('content')); // jshint ignore:line
 
-module.exports = GallerByReactApp;
+var GallerByReactApp = React.createClass({
+            render: function() {
+                var controlllerUnits = [];
+                var ImgFigures = [];
+
+                imageDatas.forEach(function(value) {
+                        ImgFigures.push( <ImgFigure data={value}/> );
+
+                        });
+                    return ( 
+                    <section className = "stage" >
+                        < section className = "img-sec"> {ImgFigures} </section> 
+                        < nav className = "controller-nav"> {controlllerUnits} </nav>
+                    </section >
+                    );
+                }
+            }); React.render( < GallerByReactApp / >, document.getElementById('content')); // jshint ignore:line
+
+        module.exports = GallerByReactApp;
