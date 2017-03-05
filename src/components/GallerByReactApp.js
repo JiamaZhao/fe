@@ -24,9 +24,9 @@ var ImgFigure = React.createClass({
     render: function() {
         return ( 
             < figure className = "image-figure" >
-              < img src = {this.props.data.imageURL} alt ={this.props.data.title}/>
+              < img height="280" width="240" src = {this.props.data.imageURL} alt ={this.props.data.title}/>
               < figcaption >
-                  <h2 className = "image-title">title</h2>
+                  <h2 className = "img-title">title</h2>
               </figcaption>
             < /figure>
         );
