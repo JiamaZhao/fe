@@ -35,9 +35,9 @@ var ImgFigure = React.createClass({
         if (this.props.arrange.pos) {
             styleObj = this.props.arrange.pos;
         }
-        return ( < figure className = "image-figure"
+        return ( < figure className = "img-figure"
             style = { styleObj } >
-            < img height = "280" width = "240" src = { this.props.data.imageURL } alt = { this.props.data.title } /> < figcaption >
+            < img height = "240" width = "240" src = { this.props.data.imageURL } alt = { this.props.data.title } /> < figcaption >
              <h2 className = "img-title"> title </h2 >
              < /figcaption > < /figure >
         );
@@ -73,10 +73,11 @@ var GallerByReactApp = React.createClass({
                     hPosRangeY = hPosRange.y,
                     vPosRangeTopY = vPosRange.topY,
                     vPosRangeX = vPosRange.x,
+
                     imgsArrangeTopArr = [],
                     topImgNum = Math.ceil(Math.random() * 2), //取一个或者不取
                     topImgSpliceIndex = 0,
-                    imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex, 1);
+                    imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex, 1  );
 
                     // 首先居中的centerIndex图片
                     imgsArrangeCenterArr[0].pos = centerPos;
@@ -87,10 +88,10 @@ var GallerByReactApp = React.createClass({
 
                     // 布局位于上侧的图片
                     imgsArrangeTopArr.forEach(function(value, index) {
-                    imgsArrangeTopArr[index].pos = {
-                        top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
-                        left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
-                    };
+                       imgsArrangeTopArr[index].pos = {
+                           top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
+                           left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
+                       };
                 });
 
                 //布局两侧的图片信息
@@ -124,12 +125,12 @@ var GallerByReactApp = React.createClass({
             getInitialState: function() {
                 return {
                     imgsArrangeArr: [
-                         {
-                             pos: {
-                                 left: '0',
-                                 top: '0'
-                             }
-                         }
+                         // {
+                         //     pos: {
+                         //         left: '0',
+                         //         top: '0'
+                         //     }
+                         // }
                     ]
                 };
             },
@@ -141,8 +142,6 @@ var GallerByReactApp = React.createClass({
 
                 //首先拿到舞台的大小
                 var stageDOM = React.findDOMNode(this.refs.stage);
-                console.log(stageDOM.scrollHeight);
-                console.log(stageDOM.scrollWidth);
                 var stageW = stageDOM.scrollWidth,
                     stageH = stageDOM.scrollHeight,
                     halfStageW = Math.ceil(stageW / 2),
@@ -160,20 +159,26 @@ var GallerByReactApp = React.createClass({
                     left: halfStageW - halfImgW,
                     top: halfStageH - halfImgH
                 };
+                console.log('halfStageH'+halfStageH);
+                console.log('halfImgH'+halfImgH);
+                console.log('halfStageW'+halfStageW);
+                console.log('halfImgW'+halfImgW);
 
-                //计算左右区域图片位置的取值范围
-                this.Constant.hPosRange.leftSecX[0] = -halfImgW;
-                this.Constant.hPosRange.leftSecX[1] = halfImgW - halfImgW * 3;
-                this.Constant.hPosRange.rightSecX[0] = halfStageW + halfImgW;
-                this.Constant.hPosRange.rightSecX[1] = stageW - halfImgW;
-                this.Constant.hPosRange.y[0] = -halfImgH;
-                this.Constant.hPosRange.y[1] = stageH - halfImgH;
+                       //计算左侧，右侧区域图片排布位置的取值范围
+               this.Constant.hPosRange.leftSecX[0] = -halfImgW;
+               this.Constant.hPosRange.leftSecX[1] = halfStageW - halfImgW * 3;
+               this.Constant.hPosRange.rightSecX[0] = halfStageW + halfImgW;
+               this.Constant.hPosRange.rightSecX[1] = stageW - halfImgW;
+               this.Constant.hPosRange.y[0] = -halfImgH;
+               this.Constant.hPosRange.y[1] = stageH - halfImgH;
 
-                //计算上侧区域图片排布的取值范围
-                this.Constant.vPosRange.topY[0] = -halfImgH;
-                this.Constant.vPosRange.topY[1] = halfStageH - halfImgH * 3;
-                this.Constant.vPosRange.x[0] = halfStageW - imgW;
-                this.Constant.vPosRange.x[1] = halfImgW;
+               //计算上侧区域图片排布位置的取值范围
+               this.Constant.vPosRange.topY[0] = -halfImgH;
+               this.Constant.vPosRange.topY[1] = halfStageH - halfImgH * 3;
+               this.Constant.vPosRange.x[0] = halfStageW - imgW;
+               this.Constant.vPosRange.x[1] = halfStageW;
+
+                console.log(this.Constant);
 
                 this.rearrange(0);
             },

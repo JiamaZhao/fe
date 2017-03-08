@@ -11,10 +11,10 @@ body {
 }
 
 .stage {
-    position: relative;
-    width: 1905px;
-    /*width: 100%;*/
-    height: 680px;
+  position: relative;
+
+  width: 1890px;
+  height: 680px; 
 }
 
 
@@ -22,18 +22,24 @@ body {
 
 .img-sec {
     position: relative;
+
     width: 100%;
     height: 100%;
+
     background-color: #ddd;
+
     overflow: hidden;
+
     @at-root {
-        .image-figure {
-          position: relative;
+        .img-figure {
+          position: absolute;
+
             width: 320px;
             height: 360px;
             margin: 0;
             padding: 40px;
-            background: #ffffff;
+            background: #fff;
+
             box-sizing: border-box;
         }
         figcaption {
@@ -46,7 +52,10 @@ body {
         }
     }
 }
-
+.img-figure img {
+  width: 240px;
+  height: 240px;
+}
 
 /*image--end*/
 
@@ -58,6 +67,7 @@ body {
     left: 0;
     bottom: 30px;
     z-index: 101;
+
     width: 100%;
     text-align: center;
 }
